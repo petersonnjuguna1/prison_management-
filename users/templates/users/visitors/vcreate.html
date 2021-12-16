@@ -1,0 +1,62 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+
+{% include "visitorsdashboard.html" %}
+
+ <style>
+              body {
+          font-size: .875rem;
+          background-color: rgba(245, 224, 224, 0.788);
+        }
+
+    </style>
+
+
+
+
+
+    <div class="row justify-content-center">
+        <div class="form-group col-md-7 align-self-center">
+
+            <form method="POST">
+                {% csrf_token %}
+                {% load crispy_forms_tags %}
+                {{form|crispy}}
+                <br><button type="submit" class="btn btn-primary" href="{% url 'visitorsdashboard' %}">submit</button>
+            </form>
+        </div>
+    </div>
+
+
+                    <table class="table table-sm">
+                                <tr>
+                                    <th>Visitor</th>
+                                    <th>visitation date</th>
+                                    <th>telno</th>
+                                    <th>Prisoner number</th>
+                                    <th>date</th>
+                                    <th>Status</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                 
+                                </tr>
+
+                                {% for visit in visits reversed %}
+                                <tr>
+                                
+                                    <td>{{visit.visitor}}</td>
+                                    <td>{{visit.visitationdate}}</td>
+                                    <td>{{visit.phoneNo}}</td>
+                                    <td>{{visit.Prisonernumber}}</td>
+                                    <td>{{visit.date}}</td>
+                                    <td>{{visit.status}}</td>
+                                    <td><a class="btn btn-sm btn-info" href="{% url 'vupdate' visit.id %}">Update</a></td>
+                                    <td><a class="btn btn-sm btn-danger" href="{% url 'vdelete' visit.id %}">Delete</a></td>
+                                  
+                                </tr>
+                                    
+                                {% endfor %}   
+                    </table>    
+
+{% endblock %}
+

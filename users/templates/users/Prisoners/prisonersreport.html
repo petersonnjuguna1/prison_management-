@@ -1,0 +1,53 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% include "prisonerdashboard.html" %}
+          
+
+
+
+<div class="row justify-content-center">
+    <div class="form-group col-md-8 align-self-center">
+        
+            <button >
+
+                <a class="nav-link" href="{% url 'prisonerpdf' %}">Generate Reports</a>
+            </button>
+                
+                
+       
+
+        
+     <table class="table table-sm">
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Prisoner No</th>
+
+                            <th>Offence</th>
+                            <th>Sentence(in years)</th>
+                            
+                            <th>Date_in</th>
+                            <th>Date_out</th>
+
+                           
+                        </tr>
+
+                        {% for prisoner in prisoners reversed %}
+                            <tr>
+                            
+                                <td>{{prisoner.fullname}}</td>
+                                <td>{{prisoner.PNo}}</td>
+                                <td>{{prisoner.offence}}</td>
+                                <td>{{prisoner.sentence}}</td>
+                                
+                                <td>{{prisoner.datein}}</td>
+                                <td>{{prisoner.dateout}}</td>
+
+                               
+
+                            </tr>
+                            
+                        {% endfor %}   
+                </table>    
+        </div>
+    </div>
+{% endblock %}

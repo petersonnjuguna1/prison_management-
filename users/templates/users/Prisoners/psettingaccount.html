@@ -1,0 +1,42 @@
+{% extends 'prisonerdashboard.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% comment %} {% include 'visitorsdashboard.html' %} {% endcomment %}
+
+<style>
+        .shift{
+        margin-left: 250px;
+    }
+    
+    .profile-pic{
+    max-width:200px;
+    max-height:200px;
+    margin:0 auto;
+    border-radius:50px;
+    }
+
+</style>
+<div class="shift">
+<div class="row">
+    <div class="col-md-3">
+        <div class="card card-body">
+            <a class="btn btn-warning" href="{% url 'prisonerdashboard' %}">&#8592;Go Back to Prisoners dashboard</a>
+            <hr>
+            <h3 style="text-align:center">Setting Account </h3>
+            <hr>
+            <img class="profile-pic"
+             src="{{request.user.Prisonerprofile.profile_pic.url}}">
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="card card-body">
+            <form action="" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input class="btn btn-primary" type="submit" name="Update Information">
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock%}

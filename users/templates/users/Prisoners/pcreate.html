@@ -1,0 +1,20 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% include "prisonerdashboard.html" %}
+
+    <div class="row justify-content-center">
+        <div class="form-group col-md-4 align-self-center">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {% load crispy_forms_tags %}
+                    {{form|crispy}}
+                    <br><button type="submit" class="btn btn-primary">submit</button>
+                </form>
+
+               
+                    
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% include "prisonerdashboard.html" %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
+                    <table class="table table-sm">
+                                <tr>
+                                    <th>Visitor</th>
+                                    <th>date</th>
+                                    <th>PhoneNo</th>
+                                    <th>prisonerNo</th>
+                                    <th>Status</th>
+                                    <th>Approval</th>
+                            
+                                </tr>
+
+                                {% for visit in visits reversed %}
+                                    <tr>
+                                    
+                                        <td>{{visit.visitor}}</td>
+                                        <td>{{visit.date}}</td>
+                                        <td>{{visit.phoneNo}}</td>
+                                        <td>{{visit.Prisonernumber}}</td>
+                                        <td>{{visit.status}}</td>
+                                        
+                                        {% if visit.status == 'Pending' %}
+                                            <td>
+                                                <button class="btn btn-success btn-sm">
+                                                    <a href= "{% url 'approve' visit.id %}" style=" text-decoration:none; color:white "  >
+                                                        <i class="bx bxs-check-alt bx-xs">
+                                                            Approve
+                                                        </i>
+                                                    </a>
+                                                </button>
+                                            
+                                                <button class="btn btn-danger btn-sm">
+                                                    <a href= "{% url 'reject' visit.id %}" style=" text-decoration:none; color:white "  >
+                                                        <i class="bx bxs-times">
+                                                            Rejected
+                                                        </i>
+                                                    </a>
+                                                </button>
+                                            </td>
+
+                                        {% endif %}
+                                    </tr>
+                                    
+                                {% endfor %}   
+                    </table> 
+</main>
+{% endblock %}

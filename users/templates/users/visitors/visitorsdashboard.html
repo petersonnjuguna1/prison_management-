@@ -1,0 +1,114 @@
+{% extends 'dashvisit.html' %}
+{% load static %}
+{% block content %}
+{% comment %} {% include "visitorsdashboard.html" %} {% endcomment %}
+  <div class="row justify-content-center">
+            <div class="form-group col-md-8 align-self-center">
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Visitors</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" >6</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            Total Visitation
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">20%</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Pending Visits</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">6</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <table class="table table-sm">
+        <tr>
+            <th>Visitor</th>
+            <th>date</th>
+            <th>telno</th>
+            <th>prisoner</th>
+
+            <th>Update</th>
+            <th>Remove</th>
+        </tr>
+
+        {% for visit in visits reversed %}
+        <tr>
+        
+            <td>{{visit.visitor}}</td>
+            <td>{{visit.date}}</td>
+            <td>{{visit.telno}}</td>
+            <td>{{visit.prisoner}}</td>
+            <td><a class="btn btn-sm btn-info" href="{% url 'vupdate' visit.id %}">Update</a></td>
+            <td><a class="btn btn-sm btn-danger" href="{% url 'vdelete' visit.id %}">Delete</a></td>
+
+        </tr>
+            
+        {% endfor %}   
+    </table>    
+{% endblock %}

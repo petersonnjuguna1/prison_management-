@@ -1,0 +1,60 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% include "prisonerdashboard.html" %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
+
+
+        <table class="table table-sm">
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Pno</th>
+
+                            <th>Offence</th>
+                            <th>Sentence</th>
+                            
+                            <th>Date_in</th>
+                            <th>Date_out</th>
+
+                            <th>Update</th>
+                            <th>Remove</th>
+                        </tr>
+
+                        {% for prisoner in prisoners reversed %}
+                            <tr>
+                            
+                                <td>{{prisoner.fullname}}</td>
+                                <td>{{prisoner.PNo}}</td>
+                                <td>{{prisoner.offence}}</td>
+                                <td>{{prisoner.sentence}}</td>
+                                
+                                <td>{{prisoner.datein}}</td>
+                                <td>{{prisoner.dateout}}</td>
+
+                                <td><a class="btn btn-sm btn-info" href="{% url 'prisonerupdate' prisoner.id %}">Update</a></td>
+                                <td><a class="btn btn-sm btn-danger" href="{% url 'prisonerdelete' prisoner.id %}">Delete</a></td>  
+
+                            </tr>
+                            
+                        {% endfor %}   
+                </table>    
+    <div class="row justify-content-center">
+        <div class="form-group col-md-4 align-self-center">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {% load crispy_forms_tags %}
+                    {{form|crispy}}
+                    <br><button type="submit" class="btn btn-primary">submit</button>
+                </form>
+
+        
+                    
+        </div>
+    </div>
+
+
+
+
+</main>
+
+{% endblock %}

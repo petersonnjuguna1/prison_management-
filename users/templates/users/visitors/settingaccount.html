@@ -1,0 +1,44 @@
+{% extends 'dashvisit.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% comment %} {% include 'visitorsdashboard.html' %} {% endcomment %}
+
+<style>
+        
+
+              body {
+          font-size: .875rem;
+          background-color: rgba(245, 224, 224, 0.788);
+        }
+
+    
+
+</style>
+<div class="shift">
+<div class="row">
+   
+
+    <div class="col-md-9">
+        <div class="card card-body">
+            <form action="" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input class="btn btn-primary" type="submit" name="Update Information">
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-body">
+            <a class="btn btn-warning" href="{% url 'vcreate' %}">&#8592;Go Back to <br> Form Details </a>
+            <hr>
+            <h3 style="text-align:center">Setting Account </h3>
+            <hr>
+            <img class="profile-pic"
+            src="{{request.user.visitorsprofile.profile_pic.url}}">
+        </div>
+    </div>
+
+</div>
+
+</div>
+{% endblock%}

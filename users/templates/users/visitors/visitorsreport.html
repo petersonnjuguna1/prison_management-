@@ -1,0 +1,40 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+{% include "prisonerdashboard.html" %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
+            <button >
+
+                <a class="nav-link" href="{% url 'visitorpdf' %}">Generate Reports</a>
+            </button>
+                
+                
+
+<table class="table table-sm">
+                                <tr>
+                                    <th>Visitor</th>
+                                    <th>visitation date</th>
+                                    <th>telno</th>
+                                    <th>Prisonernumber</th>
+                                    <th>date</th>
+                                    <th>Status</th>
+                                
+                                </tr>
+
+                                {% for visit in visits reversed %}
+                                <tr>
+                                
+                                    <td>{{visit.visitor}}</td>
+                                    <td>{{visit.visitationdate}}</td>
+                                    <td>{{visit.phoneNo}}</td>
+                                    <td>{{visit.Prisonernumber}}</td>
+                                    <td>{{visit.date}}</td>
+                                    <td>{{visit.status}}</td>
+                                    
+                                
+                                </tr>
+                                    
+                                {% endfor %}   
+                    </table>    
+</main>
+{% endblock %}

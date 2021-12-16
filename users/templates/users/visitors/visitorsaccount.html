@@ -1,0 +1,43 @@
+{% extends 'dashvisit.html' %}
+{% block content %}
+{% comment %} {% include "visitorsdashboard.html" %} {% endcomment %}
+  
+     <style>
+        
+
+    body {
+          font-size: .875rem;
+          background-color: rgba(245, 224, 224, 0.788);
+        }
+
+    
+
+</style>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-body">
+            <h4>Account Details</h4>
+            <p>Full Name: {{request.user.visitorsprofile.fullname}}</p>
+          
+            <p>Address: {{request.user.visitorsprofile.address}}</p>
+            <p>Phone no: {{request.user.visitorsprofile.phoneNo}}</p>
+            <p>Date: {{request.user.visitorsprofile.date}}</p>
+            <p>Relationship: {{request.user.visitorsprofile.relationship}}</p>
+            <td><a class="btn btn-sm btn-info" href="{% url 'settingaccount'  %}"> Settings Account </a></td>
+        </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-body">
+            <img class="profile-pic"
+            src="{{request.user.visitorsprofile.profile_pic.url}}">
+       </div>
+          </div>
+    </div>
+
+   
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'prisonerdashboard.html' %}
+{% block content %}
+{% comment %} {% include "prisonerdashboard.html" %} {% endcomment %}
+  <div class="row">
+        <div class="col-md-6">
+          <div class="card card-body">
+            <h4>Account Details</h4>
+            <p>Full Name: {{request.user.Prisonerprofile.fullname}}</p>
+          
+            <p>Date Of Birth {{request.user.Prisonerprofile.dob}}</p>
+            <p>Marital {{request.user.Prisonerprofile.marital}}</p>
+            <p>Gender {{request.user.Prisonerprofile.gender}}</p>
+            <p>Image {{request.user.Prisonerprofile.image}}</p>
+            <td><a class="btn btn-sm btn-info" href="{% url 'settingaccount'  %}"> Settings Account </a></td>
+        </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-body">
+            <img class="profile-pic"
+            src="{{request.user.Prisonerprofile.profile_pic.url}}">
+       </div>
+          </div>
+    </div>
+
+   
+
+</div>
+{% endblock %}

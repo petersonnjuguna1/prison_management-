@@ -1,0 +1,20 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="form-group col-md-7 align-self-center">
+            <P>Are you sure you want to delete?"{{prisoner}}"</P>
+                <form action="{% url 'prisonerdelete' prisoner.id %}" method="POST">
+                {% csrf_token %}
+                <a class="btn btn-warning" href="{% url 'prisonerdetails' %}">Cancel</a>
+                <input class="btn btn-danger" type="submit" name="confirm">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
